@@ -4,5 +4,6 @@
     { "src": "index.js", "use": "@now/node-server" },
     { "src": "index.html", "use": "@now/static" }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "index.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "index.js" }],
+  "alias": ["opt-in-counter.humanperson.biz"]
 }
