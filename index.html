@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Opt In Count</title>
+    <style>
+      body {
+        max-width: 100vw;
+        max-height: 100vh;
+        margin: 0;
+        background-color: #444;
+        color: #ddd;
+        text-shadow: 2px 2px #222, 4px 4px #222, 6px 6px #222;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 14vmin;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25em;
+      }
+      .header-box {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+      p,
+      select {
+        font-size: 0.5em;
+      }
+      p {
+        color: #aaa;
+      }
+      select {
+        background: transparent;
+        font-family: inherit;
+        color: inherit;
+        text-shadow: inherit;
+        margin: 0 0.25em;
+        text-align: center;
+      }
+      p,
+      h1 {
+        text-align: center;
+        margin: 0.25em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Students at</p>
+    <select id="location-selector"></select>
+    <p>Who Are Future Ready</p>
+
+    <h1 id="count">...</h1>
+  </body>
+
+  <script>
+    const locationSelector = document.getElementById('location-selector');
+    const count = document.getElementById('count');
+
+    buildLocationOptions();
+    getOptInsCount();
+
+    setInterval(() => {
+      getOptInsCount();
+
+      console.log('tick');
+    }, 5000);
+
+    function buildLocationOptions() {
+      const locations = [
+        {
+          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
+          keyword: 'GAHS',
+          name: 'Galesburg-Augusta',
+        },
+        {
+          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
+          keyword: 'bh',
+          name: 'Barclay Hills',
+        },
+      ];
+
+      locations.forEach(location =>
+        locationSelector.appendChild(buildLocationOption(location)),
+      );
+
+      locationSelector.addEventListener('change', onLocationSelect);
+    }
+
+    function buildLocationOption(location) {
+      const option = document.createElement('option');
+
+      option.setAttribute('data-guid', location.guid);
+      option.setAttribute('data-keyword', location.keyword);
+      option.innerHTML = location.name;
+
+      return option;
+    }
+
+    function getSelectedLocation() {
+      const locationOption = locationSelector.selectedOptions[0];
+      const guid = locationOption.dataset.guid;
+      const keyword = locationOption.dataset.keyword;
+
+      return { guid, keyword };
+    }
+
+    function onLocationSelect() {
+      count.innerHTML = '...';
+
+      getOptInsCount();
+    }
+
+    function getOptInsCount() {
+      const selected = getSelectedLocation();
+      const guid = selected.guid;
+      const keyword = selected.keyword;
+
+      return fetch('/get-count', {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          guid,
+          keyword,
+        }),
+        method: 'post',
+      })
+        .then(res => res.text())
+        .then(text => {
+          count.innerHTML = text;
+        });
+    }
+  </script>
+</html>

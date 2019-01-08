@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "watch": ["index.html", "index.js"]
+}
