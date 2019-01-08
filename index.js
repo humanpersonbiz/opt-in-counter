@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 const path = require('path');
@@ -27,20 +26,23 @@ const getOptInsXml = async (guid, keyword, startdate, enddate) => {
   } catch (error) {
     console.error(error);
 
-    return JSON.stringify(error, null, 2);
+    return null;
   }
 };
 
-const convertToJson = async xml =>
-  new Promise(resolve =>
-    parser.parseString(xml, (error, result) => {
-      if (error) {
-        resolve({ status: 'error', json: null });
-      }
+const convertToJson = xml =>
+  new Promise(resolve => {
+    const errorObject = { status: 'error', json: null };
 
-      resolve({ status: 'succes', json: result });
-    }),
-  );
+    // Pretty gross, huh? Gotta love ternaries...
+    return xml
+      ? parser.parseString(xml, (error, result) =>
+          error
+            ? resolve(errorObject)
+            : resolve({ status: 'success', json: result }),
+        )
+      : resolve(errorObject);
+  });
 
 const processCount = json =>
   json &&
@@ -78,7 +80,7 @@ app.post('/get-count', jsonParser, async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    res.send(JSON.stringify(error, null, 2));
+    res.send('error');
   }
 });
 
