@@ -11,6 +11,8 @@ const port = process.env.PORT || 3000;
 const jsonParser = bodyParser.json();
 const parser = new xml2js.Parser();
 
+require('dotenv').config();
+
 const getOptInsXml = async (guid, keyword, startdate, enddate) => {
   try {
     const url =
@@ -72,7 +74,7 @@ app.get('/', (req, res) => {
 
 app.post('/get-count', jsonParser, async (req, res) => {
   try {
-    const guid = req.body.guid;
+    const guid = process.env.IVISION_GUID;
     const keyword = req.body.keyword;
     const optInsCount = await getOptIns(guid, keyword);
 

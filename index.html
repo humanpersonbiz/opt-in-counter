@@ -68,107 +68,86 @@
     function buildLocationOptions() {
       const locations = [
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Barclay Hills',
           keyword: 'BH',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Climax-Scotts',
           keyword: 'CS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Comstock',
           keyword: 'COHS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Comstock Compass',
           keyword: 'CC',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Galesburg-Augusta',
           keyword: 'GAHS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Gateway Program',
           keyword: 'GP',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Gull Lake',
           keyword: 'GLHS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Gull Lake Partnership',
           keyword: 'GLP',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Hackett',
           keyword: 'HC',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Heritage Christian',
           keyword: 'HCA',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Kalamazoo Central',
           keyword: 'KC',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Kalamazoo Christian',
           keyword: 'KCH',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Loy Norrix',
           keyword: 'LN',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Parchment',
           keyword: 'PAHS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Phoenix',
           keyword: 'PH',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Portage Central',
           keyword: 'PCHS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Portage Community',
           keyword: 'PCO',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Portage Northern',
           keyword: 'PN',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Schoolcraft',
           keyword: 'SCHS',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Vicksburg',
           keyword: 'VX',
         },
         {
-          guid: '{8311ADE2-2211-4704-BD86-8BC7EC25DB9B}',
           name: 'Vicksburg Pathways',
           keyword: 'VPS',
         },
@@ -184,9 +163,7 @@
     function buildLocationOption(location) {
       const option = document.createElement('option');
 
-      option.setAttribute('data-guid', location.guid);
       option.setAttribute('data-keyword', location.keyword);
-
       option.innerHTML = location.name;
 
       return option;
