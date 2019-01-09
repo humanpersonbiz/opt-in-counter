@@ -63,11 +63,7 @@
     buildLocationOptions();
     getOptInsCount();
 
-    setInterval(() => {
-      getOptInsCount();
-
-      console.log('tick');
-    }, 5000);
+    setInterval(getOptInsCount, 5000);
 
     function buildLocationOptions() {
       const locations = [
@@ -190,6 +186,7 @@
 
       option.setAttribute('data-guid', location.guid);
       option.setAttribute('data-keyword', location.keyword);
+
       option.innerHTML = location.name;
 
       return option;
@@ -197,6 +194,7 @@
 
     function getSelectedLocation() {
       const locationOption = locationSelector.selectedOptions[0];
+
       const guid = locationOption.dataset.guid;
       const keyword = locationOption.dataset.keyword;
 
